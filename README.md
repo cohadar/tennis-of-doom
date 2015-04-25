@@ -1,4 +1,4 @@
-# Mighty Cohadar's Tennis Of Doom
+# Mighty Cohadar's Tennis of Doom
 
 Minimum viable 2D game created with Love2D
 
