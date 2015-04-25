@@ -1,22 +1,18 @@
-File                                | Title | Author       | License         | Source
------------------------------------ | ------| ------------ | --------------- | ---------
-Frogs-Lisa_Redfern-1150052170.wav   | Frogs | Lisa Redfern | Public Domain   | http://soundbible.com/2033-Frogs.html
-Ta Da-SoundBible.com-1884170640.wav | To Da | Mike Koenig  | Attribution 3.0 | http://soundbible.com/1003-Ta-Da.html
-
-value   | data
+Title   | Frogs     
 ------- | ---------------------------------------------------------------------
-File    | Frogs-Lisa_Redfern-1150052170.wav
-Title   | Frogs                                              
+File    | Frogs-Lisa_Redfern-1150052170.wav      
 Author  | Lisa Redfern
-Source  | http://soundbible.com/2033-Frogs.html
 License | Public Domain
+Source  | http://soundbible.com/2033-Frogs.html
 
-===========================================================================
-- File    : Ta Da-SoundBible.com-1884170640.wav
-- Title   : Ta Da
-- Author  : Mike Koenig
-- Source  : http://soundbible.com/1003-Ta-Da.html
-- License : Attribution 3.0
+
+Title   | Ta Da   
+------- | ---------------------------------------------------------------------
+File    | Ta Da-SoundBible.com-1884170640.wav
+Author  | Mike Koenig
+License | Attribution 3.0
+Source  | http://soundbible.com/1003-Ta-Da.html
+
 
 ===========================================================================
 File    : tennis_ball_hit_by_racket.mp3
