@@ -48,4 +48,16 @@ Author  : Steve Matteson
 Source  : https://www.love2d.org/wiki/File:Resource-HamsterBall.png
 License : Public domain, GPL, OFL
 
-    
+===========================================================================
+File    : racket_300.svg,  racket_300.png
+Title   : Racket
+Author  : Damir Cohadarevic
+Source  : https://github.com/cohadar/tennis-of-doom
+License : Public domain
+
+===========================================================================
+File    : tennis_ball.svg, tennis_ball.png
+Title   : Tennis Ball
+Author  : Damir Cohadarevic
+Source  : https://github.com/cohadar/tennis-of-doom
+License : Public domain
