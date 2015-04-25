@@ -3,14 +3,14 @@ io.stdout:setvbuf("no")
 g_dt = 0
 g_direction = "none"
 g_focus = false
-g_hamester = nil -- hamster image
+g_ball = nil -- ball image
 g_speed = 100
-g_hamster_x = 100
-g_hamster_y = 100
-g_hamster_vx = 250
-g_hamster_vy = 250
-g_hamster_width = 0
-g_hamster_height = 0
+g_ball_x = 100
+g_ball_y = 100
+g_ball_vx = 250
+g_ball_vy = 250
+g_ball_width = 0
+g_ball_height = 0
 
 g_racket_old_x = 0
 g_racket_old_y = 0
@@ -41,21 +41,19 @@ g_ft_text = "5"
 function love.load()
 	love.graphics.setBackgroundColor(0xFF, 0xCC, 0x00, 0xFF)
 	g_dt = 1.0 / 60.0
-	g_hamster = love.graphics.newImage("hamster.png")
-	g_hamster_width = g_hamster:getWidth()
-	g_hamster_height = g_hamster:getHeight()
+	g_ball = love.graphics.newImage("tennis_ball.png")
+	g_ball_width = g_ball:getWidth()
+	g_ball_height = g_ball:getHeight()
 	g_racket = love.graphics.newImage("racket_300.png")
 	g_speed = 300
 	love.mouse.setVisible(false)
 
-	g_tennis_hit = love.audio.newSource("tennis_hit.mp3", "static")
+	g_tennis_hit = love.audio.newSource("tennis_ball_hit_by_racket.mp3", "static")
 	g_tennis_hit_hard = love.audio.newSource("tennis_serve.mp3", "static")
-	g_tennis_bounce = love.audio.newSource("tennis_bounce.mp3", "static")
-	g_tennis_bounce:setVolume(0.5)
 
 	music = love.audio.newSource("Musopen_-_In_the_Hall_Of_The_Mountain_King.ogg", "stream")
 	music:play()
-	local font = love.graphics.newFont("ufonts.com_courier-new.ttf", 100)
+	local font = love.graphics.newFont("OpenSans-Regular.ttf", 100)
 	love.graphics.setFont(font)
 	g_snd_defeat = love.audio.newSource("Frogs-Lisa_Redfern-1150052170.wav", "stream")
 	g_snd_victory = love.audio.newSource("Ta Da-SoundBible.com-1884170640.wav", "stream")
@@ -73,26 +71,26 @@ function love.update(dt)
 		g_final_score = g_score
 	end
 	g_dt = g_dt * 0.99 + dt * 0.01
-	g_hamster_x = g_hamster_x + g_hamster_vx * dt
-	g_hamster_y = g_hamster_y + g_hamster_vy * dt
-	if g_hamster_y + g_hamster_height/2 > love.graphics.getHeight() then
-		g_hamster_vy = -g_hamster_vy
-		g_hamster_y = love.graphics.getHeight() - g_hamster_height/2
+	g_ball_x = g_ball_x + g_ball_vx * dt
+	g_ball_y = g_ball_y + g_ball_vy * dt
+	if g_ball_y + g_ball_height/2 > love.graphics.getHeight() then
+		g_ball_vy = -g_ball_vy
+		g_ball_y = love.graphics.getHeight() - g_ball_height/2
 		--g_tennis_bounce:play()
 	end 
-	if g_hamster_x + g_hamster_width/2 > love.graphics.getWidth() then
-		g_hamster_vx = -g_hamster_vx
-		g_hamster_x = love.graphics.getWidth() - g_hamster_width/2
+	if g_ball_x + g_ball_width/2 > love.graphics.getWidth() then
+		g_ball_vx = -g_ball_vx
+		g_ball_x = love.graphics.getWidth() - g_ball_width/2
 		--g_tennis_bounce:play()
 	end 	
-	if g_hamster_y - g_hamster_height/2 < 0 then 
-		g_hamster_vy = -g_hamster_vy
-		g_hamster_y = g_hamster_height/2
+	if g_ball_y - g_ball_height/2 < 0 then 
+		g_ball_vy = -g_ball_vy
+		g_ball_y = g_ball_height/2
 		--g_tennis_bounce:play()
 	end
-	if g_hamster_x - g_hamster_width/2 < 0 then 
-		g_hamster_vx = -g_hamster_vx
-		g_hamster_x = g_hamster_width/2
+	if g_ball_x - g_ball_width/2 < 0 then 
+		g_ball_vx = -g_ball_vx
+		g_ball_x = g_ball_width/2
 		--g_tennis_bounce:play()
 	end
 
@@ -104,15 +102,15 @@ function love.update(dt)
 	g_racket_old_y = y
 
 	-- 55 adjusts y for racket picture not centered on hit area
-	if racket_hit(x, y-55, g_hamster_x, g_hamster_y) then
+	if racket_hit(x, y-55, g_ball_x, g_ball_y) then
 	--if math.abs(g_racket_vx) > 120 or math.abs(g_racket_vy) > 120 then
-		g_hamster_vx = g_racket_vx*0.75 - g_hamster_vx*0.25
-		g_hamster_vx = absminmax(g_hamster_vx, 100, 1024)
-		g_hamster_vy = g_racket_vy*0.75 - g_hamster_vy*0.25
-		g_hamster_vy = absminmax(g_hamster_vy, 100, 1024)
+		g_ball_vx = g_racket_vx*0.75 - g_ball_vx*0.25
+		g_ball_vx = absminmax(g_ball_vx, 100, 1024)
+		g_ball_vy = g_racket_vy*0.75 - g_ball_vy*0.25
+		g_ball_vy = absminmax(g_ball_vy, 100, 1024)
 		g_racket_hit = 10
-		g_racket_hit_x = g_hamster_x
-		g_racket_hit_y = g_hamster_y
+		g_racket_hit_x = g_ball_x
+		g_racket_hit_y = g_ball_y
 		local speed = math.sqrt(g_racket_vx*g_racket_vx + g_racket_vy*g_racket_vy)
 		speed = 1 + math.floor(math.pow(speed, 1.3)/10000)
 		if  speed >= 5 then
@@ -121,8 +119,8 @@ function love.update(dt)
 			g_tennis_hit:play()
 		end
 		g_score = g_score + speed
-		g_ft_x = g_hamster_x
-		g_ft_y = g_hamster_y
+		g_ft_x = g_ball_x
+		g_ft_y = g_ball_y
 		g_ft_life = 1.0 -- sec
 		g_ft_text = "" .. speed
 
@@ -137,12 +135,12 @@ function love.update(dt)
 end
 
 -------------------------------------------------------------------------------
-function racket_hit(racket_x, racket_y, hamster_x, hamster_y)
+function racket_hit(racket_x, racket_y, ball_x, ball_y)
 	if math.abs(g_racket_last_hit_time - g_game_time) < 0.4 then
 		return false
 	end
-	local dx = racket_x - hamster_x
-	local dy = racket_y - hamster_y
+	local dx = racket_x - ball_x
+	local dy = racket_y - ball_y
 	if dx*dx + dy*dy < 65*65 then
 		g_racket_last_hit_time = g_game_time
 		return true
@@ -180,7 +178,7 @@ function love.draw()
 	local w = g_racket:getWidth()
 	local h = g_racket:getHeight()
 	love.graphics.draw(g_racket, x-(w/2), y-(h/2))
-	love.graphics.draw(g_hamster, g_hamster_x-g_hamster_width/2, g_hamster_y-g_hamster_height/2)
+	love.graphics.draw(g_ball, g_ball_x-g_ball_width/2, g_ball_y-g_ball_height/2)
 	if g_racket_hit > 0 then
 		g_racket_hit = g_racket_hit - 1
 		love.graphics.circle("fill", g_racket_hit_x, g_racket_hit_y, 30, 10)
