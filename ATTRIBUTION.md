@@ -1,3 +1,7 @@
+File                                | Title | Author       | License         | Source
+----------------------------------- | ------| ------------ | --------------- | ---------
+Frogs-Lisa_Redfern-1150052170.wav   | Frogs | Lisa Redfern | Public Domain   | http://soundbible.com/2033-Frogs.html
+Ta Da-SoundBible.com-1884170640.wav | To Da | Mike Koenig  | Attribution 3.0 | http://soundbible.com/1003-Ta-Da.html
 
 ===========================================================================
 - File    : Frogs-Lisa_Redfern-1150052170.wav
